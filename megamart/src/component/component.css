@@ -1,0 +1,47 @@
+/* App.css */
+.trigger {
+  padding: 0 14px;
+  font-size: 18px;
+  line-height: 64px;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.sider-adjusted {
+    position: relative;
+    left: -18rem;
+}
+
+.trigger:hover {
+  color: #1890ff;
+}
+
+.site-layout-background {
+  background: #fff;
+}
+
+.logo {
+  height: 32px;
+  margin: 16px;
+  background: rgba(255, 255, 255, 0.2);
+}
+
+
+/* YourComponent.css */
+.carousel-container {
+  width: 90rem; /* Ensure it uses 100% of the available width */
+  margin: 0 auto;
+  overflow: hidden; /* Prevent overflow */
+  margin-right: '5rem';
+}
+
+.carousel-container .slick-slide {
+  text-align: center;
+  line-height: 160px;
+  background: #364d79;
+  overflow: hidden;
+}
+
+.carousel-container .slick-slide h3 {
+  color: #fff;
+}
