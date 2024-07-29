@@ -2,6 +2,7 @@ import React from 'react'
 import { Carousel } from 'antd';
 import MegaMartBillboard9 from '../image/MegaMartBillboard9.png'
 import MegaMartBillboard10 from '../image/MegaMartBillboard10.png'
+import './component.css'
 
 const contentStyle = {
   height: '50rem',
@@ -17,7 +18,7 @@ const ImageData = [
 
 export default function LandPage() {
   return (
-    <div style={{ width: '90rem', marginLeft: '-16rem', height: '100vh' }}>
+    <div style={{ width: '90rem', height: '100vh', justifyContent:'center'}} className='sider-adjusted'>
       <Carousel autoplay>
         {ImageData.map((item) => (
           <div key={item.key}>

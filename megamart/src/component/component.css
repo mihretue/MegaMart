@@ -9,9 +9,12 @@
 
 .sider-adjusted {
     position: relative;
-    left: -18rem;
+    left: -10rem;
 }
-
+.new_sider{
+  position: relative;
+  left: -17rem;
+}
 .trigger:hover {
   color: #1890ff;
 }
@@ -25,7 +28,13 @@
   margin: 16px;
   background: rgba(255, 255, 255, 0.2);
 }
-
+/* for the carousel page*/
+.slider-page{
+    @media screen and (min-width: 900px){
+        width:50rem !important;
+        height: 45rem !important;
+    }
+}
 
 /* YourComponent.css */
 .carousel-container {

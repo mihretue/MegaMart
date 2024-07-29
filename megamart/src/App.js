@@ -5,6 +5,7 @@ import HomePage from "./page/HomePage";
 import AboutPage from "./page/AboutPage";
 import Contact from "./page/Contact";
 import SideBar from "./component/SideBar";
+import Footer from "./component/Footer";
 import './App.css'
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
             </Routes>
           </div>
           </main>
+          <Footer/>
       </div>
     </BrowserRouter>
   );
