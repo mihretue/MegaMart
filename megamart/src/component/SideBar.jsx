@@ -1,48 +1,50 @@
-import React, { useState, useEffect } from 'react';
-import { Layout, Menu } from 'antd';
-import { Link } from 'react-router-dom';
+
+import React, { useState } from 'react';
+import { Menu, Drawer, Button } from 'antd';
+import { LaptopOutlined, NotificationOutlined, UserOutlined, MenuOutlined } from '@ant-design/icons';
 import './component.css'
+const items2 = [UserOutlined, LaptopOutlined, NotificationOutlined].map((icon, index) => {
+  const key = String(index + 1);
+  return {
+    key: `sub${key}`,
+    icon: React.createElement(icon),
+    label: `subnav ${key}`,
+    children: new Array(4).fill(null).map((_, j) => {
+      const subKey = index * 4 + j + 1;
+      return {
+        key: subKey,
+        label: `option${subKey}`,
+      };
+    }),
+  };
+});
 
+const SideBar = () => {
+  const [visible, setVisible] = useState(false);
 
+  const showDrawer = () => {
+    setVisible(true);
+  };
 
-export default function SideBar() {
-    const [collapsed, setCollapsed] = useState(false)
-    
-    const toggle = ()=>{
-        setCollapsed(!collapsed)
-    }
+  const onClose = () => {
+    setVisible(false);
+  };
 
-    return (
-        <div class="container-fluid new_sider">
-    <div class="row flex-nowrap">
-        <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 ">
-            <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
-                <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
-                    <li class="nav-item">
-                        <Link to="#" class="nav-link align-middle px-0">
-                            <i class="fs-4 bi-house"></i> <span class="ms-1 d-none d-sm-inline">Home</span>
-                        </Link>
-                    </li>
-                    <li>
-                        <Link to="#submenu1" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
-                            <i class="fs-4 bi-speedometer2"></i> <span class="ms-1 d-none d-sm-inline">Dashboard</span> </Link>
-                    </li>
-                    <li>
-                        <Link to="#" class="nav-link px-0 align-middle">
-                            <i class="fs-4 bi-table"></i> <span class="ms-1 d-none d-sm-inline">Orders</span></Link>
-                    </li>
-                    <li>
-                        <Link to="#submenu3" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
-                            <i class="fs-4 bi-grid"></i> <span class="ms-1 d-none d-sm-inline">Products</span> </Link>
-                    </li>
-                    <li>
-                        <Link to="#" class="nav-link px-0 align-middle">
-                            <i class="fs-4 bi-people"></i> <span class="ms-1 d-none d-sm-inline">Customers</span> </Link>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </div>
-</div>
-    )
-}
+  return (
+    <>
+      <Button
+        type="primary"
+        icon={<MenuOutlined />}
+        onClick={showDrawer}
+        style={{ display: 'none', margin: '16px' }}
+        className="sidebar-button"
+      />
+      <Drawer title="Sidebar" placement="left" onClose={onClose} visible={visible}>
+        <Menu mode="inline" items={items2} onClick={onClose} />
+      </Drawer>
+      <Menu mode="inline" defaultSelectedKeys={['1']} defaultOpenKeys={['sub1']} style={{ height: '100%', borderRight: 0, left: 0 }} items={items2} className="sidebar-desktop" />
+    </>
+  );
+};
+
+export default SideBar;

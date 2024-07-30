@@ -3,7 +3,7 @@ import { Carousel } from 'antd';
 import MegaMartBillboard9 from '../image/MegaMartBillboard9.png'
 import MegaMartBillboard10 from '../image/MegaMartBillboard10.png'
 import './component.css'
-
+import FeaturedProducts from './FeaturedProducts';
 const contentStyle = {
   height: '50rem',
   color: '#fff',
@@ -28,7 +28,8 @@ export default function LandPage() {
           </div>
         ))}
       </Carousel>
-    </div>
+        
+      </div>
   )
 }
 

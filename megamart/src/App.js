@@ -13,15 +13,20 @@ function App() {
     <BrowserRouter>
       <div>
         <NavBar />
-          <main className="container mt-4">
-          <div className="app-layout">
-            <SideBar/>
-            <Routes className='app-content'>
+          <main className=" mt-4">
+          <div className="row">
+            <div className="col-md-3" >
+              <SideBar />
+            </div>
+            
+            <div className="app-content col-md-9" >
+            <Routes >
               <Route path="/" element={<HomePage />} />
               <Route path="/product" element={<ProductPage/>} />
               <Route path="/about" element={<AboutPage />} />
               <Route path="/contact" element={<Contact/>}/>
             </Routes>
+            </div>
           </div>
           </main>
           <Footer/>
