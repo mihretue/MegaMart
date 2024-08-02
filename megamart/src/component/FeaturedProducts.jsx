@@ -6,7 +6,6 @@ const {Meta} = Card;
 export default function FeaturedProducts() {
   return (
     <div className="featured-products">
-      <h2>Featured Products</h2>
         <Card
             style={{
               width: 300,

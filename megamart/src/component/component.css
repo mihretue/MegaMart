@@ -54,3 +54,77 @@
 .carousel-container .slick-slide h3 {
   color: #fff;
 }
+
+.custom-dropdown-button {
+  border: 2px solid #007bff; /* Custom border */
+  color: #007bff; /* Custom text color */
+  background-color: #fff; /* Custom background */
+  border-radius: 0.25rem; /* Rounded corners */
+  padding: 0.5rem 1rem; /* Padding */
+  font-size: 1rem; /* Font size */
+}
+
+.custom-dropdown-menu {
+  border: 1px solid #007bff; /* Border for dropdown menu */
+}
+.search-container {
+  display: flex;
+  align-items: center;
+  border: 1px solid #ddd;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.search-input {
+  flex: 1;
+  border: none;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.search-button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.suggestions-list {
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  margin-top: 5px;
+  background: #fff;
+  position: absolute;
+  width: calc(100% - 2px);
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.suggestions-list li {
+  padding: 5px;
+  cursor: pointer;
+}
+
+.suggestions-list li:hover {
+  background-color: #f0f0f0;
+}
+
+.filters {
+  margin-bottom: 10px;
+}
+
+.results {
+  display: flex;
+  flex-direction: column;
+}
+
+.result-item {
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+.result-item:last-child {
+  border-bottom: none;
+}
