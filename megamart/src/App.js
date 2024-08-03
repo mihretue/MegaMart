@@ -29,7 +29,9 @@ function App() {
             </div>
           </div>
           </main>
-          <Footer/>
+          <div className="position-relative">
+            <Footer className='position-absolute bottom-0' />
+          </div>
       </div>
     </BrowserRouter>
   );
