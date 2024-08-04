@@ -7,7 +7,12 @@ import HeadPhonee from '../../image/headphone1.jpg'
 import { EffectCoverflow } from 'swiper/modules';
 import { Pagination } from 'swiper/modules';
 import { Navigation } from 'swiper/modules';
-import "../component.css"
+import 'ionicons/icons';
+import "../../index.css"
+import 'swiper/css';
+import 'swiper/css/effect-coverflow';
+import 'swiper/css/pagination';
+import 'swiper/css/navigation';
 
 const Data = [ 
     {photo : Clothe},
@@ -18,13 +23,14 @@ const Data = [
 ]
 export default function ProductSlide() {
   return (
-    <div>
+    <div className='container'>
       <Swiper
       effect={'coverflow'}
         grabCursor={true}
         centeredSlides={true}
         loop={true}
-        slidesPerView={'auto'}
+        slidesPerView={'4'}
+        spaceBetween={10}
         coverflowEffect={{
           rotate: 0,
           stretch: 0,
@@ -40,13 +46,13 @@ export default function ProductSlide() {
         modules={[EffectCoverflow, Pagination, Navigation]}
         className="swiper_container"
       >
-          <SwiperSlide>
+          
             {
               Data.map((item) => {
                 return (
-                  <div >
-                    <img src={item.photo} alt="Clothe" />
-                  </div>
+                  <SwiperSlide >
+                    <img src={item.photo} alt='product' />
+                  </SwiperSlide>
                   )
                   })
             }
@@ -58,9 +64,8 @@ export default function ProductSlide() {
               <div className="swiper-button-next slider-arrow">
                 <ion-icon name="arrow-forward-outline"></ion-icon>
               </div>
-            <div className="swiper-pagination"></div>
-        </div>
-          </SwiperSlide>
+              <div className="swiper-pagination"></div>
+            </div>
       </Swiper>
     </div>
   )
