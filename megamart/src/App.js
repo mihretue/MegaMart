@@ -7,7 +7,7 @@ import Contact from "./page/Contact";
 import SideBar from "./component/SideBar";
 import Footer from "./component/Footer";
 import './App.css'
-
+import Admin from './component/Admin'
 function App() {
   return (
     <BrowserRouter>
@@ -25,6 +25,7 @@ function App() {
               <Route path="/product" element={<ProductPage/>} />
               <Route path="/about" element={<AboutPage />} />
               <Route path="/contact" element={<Contact/>}/>
+              <Route path="/admin" element={<Admin/>} />
             </Routes>
             </div>
           </div>

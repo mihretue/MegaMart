@@ -1,30 +1,34 @@
 require("dotenv").config()
-const express = require("express");
+const express = require("express")
 const mongoose = require("mongoose")
 const cors = require("cors")
-const errorMiddleWare = require('./Middleware/errorMiddleware')
-const ProductRoute = require('./Routes/productRoute')
-const uri = process.env.DATABASE_URL
-
+const bodyParser = require('body-parser');
+const errorHandler = require("./Middleware/errorMiddleWare.jsx")
+const productRoute = require("./Routes/productRoute.jsx")
+const uri = process.env.DATABASE_URI
+const categoryRoute = require("./Routes/categoryRoute.jsx")
 
 const app = express();
-const port = process.env.PORT|| 8000;
+const port = process.env.PORT|| 8000
+app.use(express.json())
+app.use(express.urlencoded({ extended: true }));
+
+
 const corsOptions = {
     origin: "http://localhost:3000",
     optionsSuccessStatus: 200
     
 }
 app.use(cors(corsOptions))
-app.use(express.json())
-app.use(express.urlencoded(
-    {
-        extended: false
-    }))
 
-app.use('/api/megamart/products', ProductRoute)
-app.use(errorMiddleWare )
+app.use('/api/products', productRoute)
+app.use('/api/category', categoryRoute)
 
+app.get('/', (req, res)=>{
+    res.send('Mega Mart')
+})
 
+app.use(errorHandler)
 
 class ServerSelectionError extends Error {
   constructor(message) {

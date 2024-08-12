@@ -28,21 +28,21 @@ const ProductSchema = new Schema({
     required: true,
     min: 0,
   },
-  ratings: [
-    {
-      user: {
-        type: Schema.Types.ObjectId,
-        ref: 'User',
-      },
-      rating: {
-        type: Number,
-        required: true,
-        min: 1,
-        max: 5,
-      },
-      review: String,
-    },
-  ],
+  // ratings: [
+  //   {
+  //     user: {
+  //       type: Schema.Types.ObjectId,
+  //       ref: 'User',
+  //     },
+  //     rating: {
+  //       type: Number,
+  //       required: true,
+  //       min: 1,
+  //       max: 5,
+  //     },
+  //     review: String,
+  //   },
+  // ],
   createdAt: {
     type: Date,
     default: Date.now,

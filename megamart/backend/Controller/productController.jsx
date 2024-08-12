@@ -1,4 +1,4 @@
-const Product = require('../models/Product');
+const Product = require('../Model/productModel.jsx');
 const { v2: cloudinary } = require('cloudinary');
 const { CloudinaryStorage } = require('multer-storage-cloudinary');
 const multer = require('multer');
@@ -50,7 +50,7 @@ const createProduct = async (req, res) => {
 // GET method to retrieve all products
 const getAllProducts = async (req, res) => {
   try {
-    const products = await Product.find().populate('category').populate('ratings.user');
+    const products = await Product.find().populate('category');
     res.json(products);
   } catch (error) {
     res.status(500).json({ error: error.message });
