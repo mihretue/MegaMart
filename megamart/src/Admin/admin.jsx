@@ -1,25 +1,53 @@
 import React, { useState } from 'react';
 import { createProduct } from '../api';
 import { Input } from 'antd';
-import { Button } from 'antd';
-
+// import { Button } from 'antd';
+import axios from 'axios';
+import { type } from '@testing-library/user-event/dist/type';
 
 const {TextArea} = Input;
 const CreateProduct = ({ onProductCreated }) => {
+  const preset_value = "mihretupreset"
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
   const [price, setPrice] = useState('');
   const [category, setCategory] = useState('');
   const [stock, setStock] = useState('');
-  const [images, setImages] = useState([]);
+  const [image, setImage] = useState(null);
+  const [imageUrl, setImageUrl] = useState('')
+
+  const uploadImageToCloudinary = async (image) => {
+    const formData = new FormData();
+    formData.append('file', image);
+    formData.append('upload_preset', preset_value); // Replace with your Cloudinary upload preset
+
+    try {
+      const response = await axios.post('https://api.cloudinary.com/v1_1/dyg8xfttm/image/upload', formData);
+      return response.data.secure_url; // This is the URL of the uploaded image
+    } catch (error) {
+      console.error('Error uploading image to Cloudinary:', error);
+      throw error;
+    }
+  };
 
   const handleImageChange = (e) => {
-    setImages(e.target.files);
+    setImage(e.target.files[0]);
   };
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
 
+    e.preventDefault();
+    console.log("form submitted")
+    alert(`Name: ${name}, Description: ${description}, Price: ${price}`); 
+    try {
+      //upload the image to cloudinary
+      let imageUrl = null
+      if (image) {
+        imageUrl = await uploadImageToCloudinary(image);
+        console.log(imageUrl)
+        }
+
+        //preparing the form
     const formData = new FormData();
     formData.append('name', name);
     formData.append('description', description);
@@ -27,20 +55,28 @@ const CreateProduct = ({ onProductCreated }) => {
     formData.append('category', category);
     formData.append('stock', stock);
 
-    for (let i = 0; i < images.length; i++) {
-      formData.append('images', images[i]);
+    if (imageUrl){
+      formData.append('image', imageUrl);
     }
 
-    try {
+    //create the product
       const newProduct = await createProduct(formData);
-      onProductCreated(newProduct);
+      console.log('New Product: ', newProduct)
+      if(onProductCreated && typeof onProductCreated==='function'){
+        onProductCreated(newProduct);
+      }else{
+        console.log('onProdcutCreated is not defined or is not a function')
+      }
       // Reset form
       setName('');
       setDescription('');
       setPrice('');
       setCategory('');
       setStock('');
-      setImages([]);
+      setImage(null);
+      setImageUrl('');
+
+      console.log(formData)
     } catch (error) {
       console.error('Error creating product:', error);
     }
@@ -96,7 +132,7 @@ const CreateProduct = ({ onProductCreated }) => {
         accept="image/*"
         className='col-md-7 p-2 my-2'
       />
-      <Button type="submit" className='bg-primary d-flex'>Create Product</Button>
+      <button type="submit" className='bg-primary d-flex'>Create Product</button>
       </div>
     </form>
   );
