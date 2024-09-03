@@ -35,9 +35,9 @@ export default function ProductSlide() {
           rotate: 0,
           stretch: 0,
           depth: 100,
-          modifier: 2.5,
+          modifier: 0.5,
         }}
-        pagination={{ el: '.swiper-pagination', clickable: true }}
+        
         navigation={{
           nextEl: '.swiper-button-next',
           prevEl: '.swiper-button-prev',
@@ -51,7 +51,7 @@ export default function ProductSlide() {
               Data.map((item) => {
                 return (
                   <SwiperSlide >
-                    <img src={item.photo} alt='product' />
+                    <img className='w-100 h-100' src={item.photo} alt='product' />
                   </SwiperSlide>
                   )
                   })
@@ -59,7 +59,7 @@ export default function ProductSlide() {
 
             <div className="slider-controler">
               <div className="swiper-button-prev slider-arrow">
-                <ion-icon name="arrow-back-outline"></ion-icon>
+                <ion-icon name="arrow-back-outline" className='color-'></ion-icon>
               </div>
               <div className="swiper-button-next slider-arrow">
                 <ion-icon name="arrow-forward-outline"></ion-icon>

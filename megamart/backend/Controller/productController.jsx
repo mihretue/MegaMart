@@ -25,23 +25,27 @@ const upload = multer({ storage });
 
 // POST method to create a new product
 const createProduct = async (req, res) => {
+  
   try {
-    const { name, description, price, category, stock } = req.body;
+    console.log("Request received", req.body); 
+    const { name, description, price, category, stock, image} = req.body;
 
-    // Check if there are uploaded images
-    const images = req.files ? req.files.map(file => file.path) : [];
-
+    //   let imageUrl = image| null
+    // if(!imageUrl){
+    //   imageUrl= 'https://res-console.cloudinary.com/dyg8xfttm/thumbnails/v1/image/upload/v1699363510/Y2xkLXNhbXBsZS01/drilldown'
+    // }
     const newProduct = new Product({
       name,
       description,
       price,
       category,
-      images, // Cloudinary URLs
+      image , // Cloudinary URLs
       stock,
     });
 
     const savedProduct = await newProduct.save();
     res.status(201).json(savedProduct);
+  
   } catch (error) {
     res.status(500).json({ error: error.message });
   }

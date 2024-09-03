@@ -67,7 +67,7 @@ html {
 }
 
 ::-webkit-scrollbar-track {
-  background: #f9f9f9;
+  background: #7b2b2b;
 }
 
 .container {
@@ -84,22 +84,26 @@ html {
 }
 
 .swiper_container {
-  display: flex;
+  /* display: flex;
   align-items: center;
   justify-content: center;
   width: 100%;
   height: 52rem;
   padding: 2rem 0;
-  position: relative;
+  position: relative; */
+  height: 52rem;
+  overflow: hidden;
+  perspective: 1000px
 }
 
 .swiper-slide {
-  display: flex;
+  /* display: flex;
   align-items: center;
-  justify-content: center;
-  width: 27rem;
-  height: 62rem;
+  justify-content: center; */
+  width: auto;
+  height: 100%;
   position: relative;
+  z-index: 1;
 }
 
 @media (max-width: 500px) {
@@ -121,6 +125,8 @@ html {
   height: auto;
   border-radius: 2rem;
   object-fit: cover;
+  max-width: 100%;
+  max-height: 100%;
 }
 
 .swiper-slide-shadow-left,
@@ -136,9 +142,21 @@ html {
   justify-content: center;
 }
 
+.slider-controler .swiper-button-next, 
+.slider-controler .swiper-button-prev {
+ color: var(--primary);
+  background: var(--white);
+  border-radius: 50%;
+  width: 3.5rem;
+  height: 3.5rem;
+}
+
+.slider-controler .swiper-button-prev {
+  left: 1rem; /* Adjust positioning */
+}
+
 .slider-controler .swiper-button-next {
-  left: 58% !important;
-  transform: translateX(-58%) !important;
+  right: 1rem; /* Adjust positioning */
 }
 
 @media (max-width: 990px) {
@@ -176,7 +194,7 @@ html {
   border-radius: 50%;
   left: 42%;
   transform: translateX(-42%);
-  filter: drop-shadow(0px 8px 24px rgba(18, 28, 53, 0.1));
+  filter: drop-shadow(0px 8px 24px rgba(0, 0, 0, 0.1));
 }
 
 .slider-controler .slider-arrow ion-icon {
@@ -201,3 +219,29 @@ html {
 .swiper-pagination .swiper-pagination-bullet-active {
   background: var(--primary);
 }
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
+
+.loader {
+  width: 120px;
+  height: 24px;
+  -webkit-mask:
+    radial-gradient(circle closest-side,#000 94%,#0000) 0 0/25% 100%,
+    linear-gradient(#000 0 0) center/calc(100% - 12px) calc(100% - 12px) no-repeat;
+  mask:
+    radial-gradient(circle closest-side,#000 94%,#0000) 0 0/25% 100%,
+    linear-gradient(#000 0 0) center/calc(100% - 12px) calc(100% - 12px) no-repeat;
+  background:
+   linear-gradient(#25b09b 0 0) 0/0% no-repeat
+   #ddd;
+  animation: l7 4s infinite linear;
+}
+@keyframes l7 {
+    100% {background-size:100%}
+}
+
